@@ -1,0 +1,15 @@
+models:
+  - name: dim_movies
+    columns:
+      - name: movie_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fact_ratings
+    columns:
+      - name: movie_id
+        tests:
+          - relationships:
+              to: ref('dim_movies')
+              field: movie_id
