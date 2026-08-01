@@ -4,12 +4,9 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
 
 jobs:
-  dbt-build:
+  dbt-job:
     runs-on: ubuntu-latest
 
     steps:
@@ -19,12 +16,12 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
       - name: Install dbt
         run: |
-          pip install dbt-core
+          python -m pip install --upgrade pip
           pip install dbt-snowflake
 
-      - name: Check dbt Version
+      - name: dbt Version
         run: dbt --version
