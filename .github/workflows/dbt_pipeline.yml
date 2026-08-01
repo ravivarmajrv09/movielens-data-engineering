@@ -36,7 +36,9 @@ jobs:
 
       - name: Display profiles.yml
         run: |
-          cat ~/.dbt/profiles.yml     
+          echo "-----------"
+          cat ~/.dbt/profiles.yml
+          echo "-----------"  
 
       - name: dbt Debug
         run: dbt debug --profiles-dir ~/.dbt
@@ -49,4 +51,3 @@ jobs:
 
       - name: dbt Test
         run: dbt test --profiles-dir ~/.dbt
-# trigger github actions
