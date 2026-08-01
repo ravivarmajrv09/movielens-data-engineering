@@ -1,6 +1,6 @@
 {{ config(
     materialized='incremental',
-    unique_key=['user_id','movie_id','timestamp']
+    unique_key=['user_id','movie_id','rating_timestamp']
 ) }}
 
 SELECT
