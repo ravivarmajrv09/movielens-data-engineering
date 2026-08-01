@@ -9,6 +9,10 @@ jobs:
   dbt-job:
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: .
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -26,16 +30,22 @@ jobs:
       - name: Create profiles.yml
         run: |
           mkdir -p ~/.dbt
-          echo '${{ secrets.DBT_PROFILE }}' > ~/.dbt/profiles.yml
+          cat <<EOF > ~/.dbt/profiles.yml
+          ${{ secrets.DBT_PROFILE }}
+          EOF
+
+      - name: Display profiles.yml
+        run: |
+          cat ~/.dbt/profiles.yml     
 
       - name: dbt Debug
-        run: dbt debug
+        run: dbt debug --profiles-dir ~/.dbt
 
       - name: dbt Dependencies
-        run: dbt deps
+        run: dbt deps --profiles-dir ~/.dbt
 
       - name: dbt Run
-        run: dbt run
+        run: dbt run --profiles-dir ~/.dbt
 
       - name: dbt Test
-        run: dbt test
+        run: dbt test --profiles-dir ~/.dbt
