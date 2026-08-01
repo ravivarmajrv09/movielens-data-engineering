@@ -23,5 +23,19 @@ jobs:
           python -m pip install --upgrade pip
           pip install dbt-snowflake
 
-      - name: dbt Version
-        run: dbt --version
+      - name: Create profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          echo '${{ secrets.DBT_PROFILE }}' > ~/.dbt/profiles.yml
+
+      - name: dbt Debug
+        run: dbt debug
+
+      - name: dbt Dependencies
+        run: dbt deps
+
+      - name: dbt Run
+        run: dbt run
+
+      - name: dbt Test
+        run: dbt test
