@@ -7,6 +7,7 @@ SELECT
     movieId AS movie_id,
     TITLE AS title,
     GENRES AS genres,
+    language,
     LOAD_DATE AS load_date
 FROM {{ source('raw','RAW_MOVIES') }}
 

@@ -4,6 +4,7 @@ select
     movie_id,
     title,
     genres,
+    language,
     'CSV' as source_type
 from {{ ref('stg_movies') }}
 
