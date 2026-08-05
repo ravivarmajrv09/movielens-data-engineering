@@ -4,6 +4,7 @@ select
     m.movie_id,
     m.title,
     m.genres,
+    m.language,
     l.imdb_id,
     l.tmdb_id
 
